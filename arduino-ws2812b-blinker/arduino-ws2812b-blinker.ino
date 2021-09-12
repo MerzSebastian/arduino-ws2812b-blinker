@@ -7,24 +7,23 @@
 
 Adafruit_NeoPixel pixels(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
-int offOnDelayOptions[] = {200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400};
+int delayOptions[] = {200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400};
 byte r = 255;
 byte g = 0;
 byte b = 0;
 
-int on_off_time = 0;
+int blinkDelay = 0;
 int menuDelayThreshold = 1000;
 
 void setup() {
   pinMode(BTN_PIN, INPUT_PULLUP);
   pinMode(PIXEL_PIN, OUTPUT);
-  pixels.begin();
   attachInterrupt(BTN_INTERRUPT, btnPressed, FALLING); //interupt 0 = pin 2
-  
+  pixels.begin();
   r = EEPROM.read(100);
   g = EEPROM.read(101);
   b = EEPROM.read(102);
-  on_off_time = (EEPROM.read(103) << 8) + EEPROM.read(104);
+  blinkDelay = (EEPROM.read(103) << 8) + EEPROM.read(104);
 }
 
 void btnPressed()
@@ -42,9 +41,9 @@ void btnPressed()
         pixels.show();
         selectedOption += 1;
       }
-      EEPROM.write(103, highByte(offOnDelayOptions[selectedOption-1]));
-      EEPROM.write(104, lowByte(offOnDelayOptions[selectedOption-1]));
-      on_off_time = offOnDelayOptions[selectedOption-1];
+      EEPROM.write(103, highByte(delayOptions[selectedOption-1]));
+      EEPROM.write(104, lowByte(delayOptions[selectedOption-1]));
+      blinkDelay = delayOptions[selectedOption-1];
       break;
     }
   }
@@ -99,7 +98,7 @@ void changeColor(){
 
 void loop() {
   setLED(r,g,b);
-  delay(on_off_time);
+  delay(blinkDelay);
   setLED(0,0,0);
-  delay(on_off_time);
+  delay(blinkDelay);
 }
