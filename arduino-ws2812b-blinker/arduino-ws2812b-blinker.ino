@@ -1,6 +1,8 @@
 #include <Adafruit_NeoPixel.h>
 #include <EEPROM.h>
 #define PIXEL_PIN 1
+#define BTN_PIN 2
+#define BTN_INTERRUPT 0
 #define PIXEL_COUNT 12
 
 Adafruit_NeoPixel pixels(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
@@ -14,10 +16,10 @@ int on_off_time = 0;
 int menuDelayThreshold = 1000;
 
 void setup() {
-  pinMode(2, INPUT_PULLUP);
-  pinMode(1, OUTPUT);
+  pinMode(BTN_PIN, INPUT_PULLUP);
+  pinMode(PIXEL_PIN, OUTPUT);
   pixels.begin();
-  attachInterrupt(0, btnPressed, FALLING); //interupt 0 = pin 2
+  attachInterrupt(BTN_INTERRUPT, btnPressed, FALLING); //interupt 0 = pin 2
   
   r = EEPROM.read(100);
   g = EEPROM.read(101);
@@ -29,12 +31,12 @@ void btnPressed()
 {
   int startTime = millis();
   int usedTime = 0;
-  while(digitalRead(2) == LOW){
+  while(digitalRead(BTN_PIN) == LOW){
     usedTime = millis() - startTime;
     if (usedTime >= menuDelayThreshold){
       blinkLEDS(255,255,255,100,2);
       byte selectedOption = 0;
-      while(digitalRead(2) == LOW && selectedOption < 12){
+      while(digitalRead(BTN_PIN) == LOW && selectedOption < 12){
         delay(400);
         pixels.setPixelColor(selectedOption, pixels.Color(255,255,255));
         pixels.show();
