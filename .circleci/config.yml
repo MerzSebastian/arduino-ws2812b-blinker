@@ -14,6 +14,12 @@ jobs:
             git clone https://github.com/arduino/ArduinoCore-avr.git
             cp ArduinoCore-avr/variants/standard/pins_arduino.h ArduinoCore-avr/cores/arduino/
       - run:
+          name: install Adafruite NeoPixel library
+          command: |
+            git clone https://github.com/adafruit/Adafruit_NeoPixel.git
+            cp Adafruit_NeoPixel/Adafruit_NeoPixel.h ./
+            cp Adafruit_NeoPixel/Adafruit_NeoPixel.cpp ./
+      - run:
           name: compile for atmega328p
           command: >
             avr-g++ -mmcu=atmega328p -DARDUINO=105 -DF_CPU=16000000L -Os
