@@ -12,6 +12,7 @@ jobs:
             apt update
             apt install -y gcc-avr avr-libc avrdude curl git
             git clone https://github.com/arduino/ArduinoCore-avr.git
+            cp ArduinoCore-avr/variants/standard/pins_arduino.h ArduinoCore-avr/cores/arduino/
       - run:
           name: compile for atmega328p
           command: >
