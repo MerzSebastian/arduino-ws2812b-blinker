@@ -1,0 +1,17 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: debian:latest
+    steps:
+      - checkout
+      - run:
+          name: Install avr toolchain
+          command: apt-get install gcc-avr avr-libc avrdude
+
+
+workflows:
+  build:
+    jobs:
+      - build
