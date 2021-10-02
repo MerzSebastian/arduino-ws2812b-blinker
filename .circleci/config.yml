@@ -10,8 +10,7 @@ jobs:
           name: Install avr toolchain
           command: |
             apt update
-            apt install -y gcc-avr avr-libc avrdude
-            apt install curl
+            apt install -y gcc-avr avr-libc avrdude curl
             curl -O Arduino.h https://raw.githubusercontent.com/arduino/ArduinoCore-avr/master/cores/arduino/Arduino.h
       - run:
           name: compile for atmega328p
