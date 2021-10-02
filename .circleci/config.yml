@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Install avr toolchain
-          command: apt-get install gcc-avr avr-libc avrdude
+          command: apt install gcc-avr avr-libc avrdude
 
 
 workflows:
