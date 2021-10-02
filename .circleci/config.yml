@@ -14,12 +14,8 @@ jobs:
       - run:
           name: Install avr toolchain
           command: >
-            avr-g++ -mmcu=atmega328p -DARDUINO=105 -DF_CPU=16000000L \
-            -I/usr/share/arduino/hardware/arduino/cores/arduino \
-            -I/usr/share/arduino/hardware/arduino/variants/standard \
-            -Os -fno-exceptions -ffunction-sections -fdata-sections \
-            -Wl,--gc-sections -g -Wall -Wextra \
-            -x c++ -include Arduino.h \
+            avr-g++ -mmcu=atmega328p -DARDUINO=105 -DF_CPU=16000000L
+            -x c++ -include Arduino.h
             arduino-ws2812b-blinker/arduino-ws2812b-blinker.ino
 
 
