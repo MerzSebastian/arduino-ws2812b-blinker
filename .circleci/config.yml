@@ -10,7 +10,7 @@ jobs:
           name: Install avr toolchain
           command: |
             apt update
-            apt install gcc-avr avr-libc avrdude
+            apt install -y gcc-avr avr-libc avrdude
       - run:
           name: Install avr toolchain
           command: >
