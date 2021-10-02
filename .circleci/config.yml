@@ -16,11 +16,8 @@ jobs:
       - run:
           name: install Adafruite NeoPixel library
           command: |
+            cd ArduinoCore-avr/libraries
             git clone https://github.com/adafruit/Adafruit_NeoPixel.git
-            cp Adafruit_NeoPixel/Adafruit_NeoPixel.h arduino-ws2812b-blinker/
-            cp Adafruit_NeoPixel/Adafruit_NeoPixel.cpp arduino-ws2812b-blinker/
-            cd arduino-ws2812b-blinker
-            ls -la
       - run:
           name: compile for atmega328p
           command: >
