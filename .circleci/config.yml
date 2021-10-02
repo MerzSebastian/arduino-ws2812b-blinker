@@ -8,7 +8,19 @@ jobs:
       - checkout
       - run:
           name: Install avr toolchain
-          command: apt install gcc-avr avr-libc avrdude
+          command: |
+            apt update
+            apt install gcc-avr avr-libc avrdude
+      - run:
+          name: Install avr toolchain
+          command: >
+            avr-g++ -mmcu=atmega328p -DARDUINO=105 -DF_CPU=16000000L \
+            -I/usr/share/arduino/hardware/arduino/cores/arduino \
+            -I/usr/share/arduino/hardware/arduino/variants/standard \
+            -Os -fno-exceptions -ffunction-sections -fdata-sections \
+            -Wl,--gc-sections -g -Wall -Wextra \
+            -x c++ -include Arduino.h \
+            arduino-ws2812b-blinker/arduino-ws2812b-blinker.ino
 
 
 workflows:
