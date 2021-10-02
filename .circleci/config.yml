@@ -15,7 +15,7 @@ jobs:
       - run:
           name: compile for atmega328p
           command: >
-            avr-g++ -mmcu=atmega328p -DARDUINO=105 -DF_CPU=16000000L
+            avr-g++ -mmcu=atmega328p -DARDUINO=105 -DF_CPU=16000000L -Os
             -x c++ -include ArduinoCore-avr/cores/arduino/Arduino.h
             arduino-ws2812b-blinker/arduino-ws2812b-blinker.ino
 
