@@ -18,6 +18,7 @@ jobs:
           command: |
             cd ArduinoCore-avr/libraries
             git clone https://github.com/adafruit/Adafruit_NeoPixel.git
+            ls -la
       - run:
           name: compile for atmega328p
           command: >
