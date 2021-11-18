@@ -15,6 +15,14 @@ byte b = 0;
 int blinkDelay = 0;
 int menuDelayThreshold = 1000;
 
+void setLED(byte r, byte g, byte b){
+  for(int i=0; i<PIXEL_COUNT; i++) {
+    pixels.setPixelColor(i, pixels.Color(r,g,b));
+  }
+  delay(20);
+  pixels.show();
+}
+
 void blinkLEDS(byte r, byte g, byte b, int delayMs, int count){
   for(int i=0; i<count;i++){
       setLED(r,g,b);
@@ -22,6 +30,32 @@ void blinkLEDS(byte r, byte g, byte b, int delayMs, int count){
       setLED(0,0,0);
       delay(delayMs);
   }
+}
+
+void changeColor(){
+  if(r == 255){
+    r = 0;
+    g = 255;
+    b = 0;
+  }
+  else if(g == 255){
+    r = 0;
+    g = 0;
+    b = 255;
+  }
+  else if(b == 255){
+    r = 255;
+    g = 0;
+    b = 0;
+  }
+  else{ //fallback for empty/wrong eeprom entry
+    r = 255;
+    g = 0;
+    b = 0;
+  }
+  EEPROM.write(100, r);
+  EEPROM.write(101, g);
+  EEPROM.write(102, b);
 }
 
 void btnPressed()
@@ -59,41 +93,6 @@ void setup() {
   g = EEPROM.read(101);
   b = EEPROM.read(102);
   blinkDelay = (EEPROM.read(103) << 8) + EEPROM.read(104);
-}
-
-
-void setLED(byte r, byte g, byte b){
-  for(int i=0; i<PIXEL_COUNT; i++) {
-    pixels.setPixelColor(i, pixels.Color(r,g,b));
-  }
-  delay(20);
-  pixels.show();
-}
-
-void changeColor(){
-  if(r == 255){
-    r = 0;
-    g = 255;
-    b = 0;
-  }
-  else if(g == 255){
-    r = 0;
-    g = 0;
-    b = 255;
-  }
-  else if(b == 255){
-    r = 255;
-    g = 0;
-    b = 0;
-  }
-  else{ //fallback for empty/wrong eeprom entry
-    r = 255;
-    g = 0;
-    b = 0;
-  }
-  EEPROM.write(100, r);
-  EEPROM.write(101, g);
-  EEPROM.write(102, b);
 }
 
 void loop() {
