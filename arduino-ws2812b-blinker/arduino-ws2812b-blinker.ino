@@ -15,6 +15,15 @@ byte b = 0;
 int blinkDelay = 0;
 int menuDelayThreshold = 1000;
 
+void blinkLEDS(byte r, byte g, byte b, int delayMs, int count){
+  for(int i=0; i<count;i++){
+      setLED(r,g,b);
+      delay(delayMs);
+      setLED(0,0,0);
+      delay(delayMs);
+  }
+}
+
 void btnPressed()
 {
   int startTime = millis();
@@ -59,15 +68,6 @@ void setLED(byte r, byte g, byte b){
   }
   delay(20);
   pixels.show();
-}
-
-void blinkLEDS(byte r, byte g, byte b, int delayMs, int count){
-  for(int i=0; i<count;i++){
-      setLED(r,g,b);
-      delay(delayMs);
-      setLED(0,0,0);
-      delay(delayMs);
-  }
 }
 
 void changeColor(){
