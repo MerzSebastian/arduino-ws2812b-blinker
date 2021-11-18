@@ -15,17 +15,6 @@ byte b = 0;
 int blinkDelay = 0;
 int menuDelayThreshold = 1000;
 
-void setup() {
-  pinMode(BTN_PIN, INPUT_PULLUP);
-  pinMode(PIXEL_PIN, OUTPUT);
-  attachInterrupt(BTN_INTERRUPT, btnPressed, FALLING); //interupt 0 = pin 2
-  pixels.begin();
-  r = EEPROM.read(100);
-  g = EEPROM.read(101);
-  b = EEPROM.read(102);
-  blinkDelay = (EEPROM.read(103) << 8) + EEPROM.read(104);
-}
-
 void btnPressed()
 {
   int startTime = millis();
@@ -50,6 +39,17 @@ void btnPressed()
   if (usedTime < menuDelayThreshold){
     changeColor();
   }
+}
+
+void setup() {
+  pinMode(BTN_PIN, INPUT_PULLUP);
+  pinMode(PIXEL_PIN, OUTPUT);
+  attachInterrupt(BTN_INTERRUPT, btnPressed, FALLING); //interupt 0 = pin 2
+  pixels.begin();
+  r = EEPROM.read(100);
+  g = EEPROM.read(101);
+  b = EEPROM.read(102);
+  blinkDelay = (EEPROM.read(103) << 8) + EEPROM.read(104);
 }
 
 
