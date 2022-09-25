@@ -25,7 +25,8 @@ jobs:
           command: |
             export PATH=$PATH:/root/project/bin
             arduino-cli compile -b arduino:avr:nano --output-dir /root/project/compiled arduino-ws2812b-blinker
-            cd compiled && ls -la
+            apt install -y rename
+            cd compiled && rename -v -n 's/arduino-ws2812b-blinker.ino/bin/' *
       - persist_to_workspace:
           root: .
           paths: compiled
