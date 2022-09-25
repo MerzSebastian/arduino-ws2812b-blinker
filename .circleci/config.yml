@@ -25,10 +25,10 @@ jobs:
           command: |
             export PATH=$PATH:/root/project/bin
             arduino-cli compile -b arduino:avr:nano arduino-ws2812b-blinker
-            ls -la
+            cd bin && ls -la
       - persist_to_workspace:
           root: .
-          paths: .
+          paths: bin
   upload-nightly:
     docker:
       - image: ubuntu:20.04
