@@ -43,7 +43,7 @@ void changeColor() {
         r = 255;
         g = 0;
         b = 0;
-    } else {  // fallback for empty/wrong eeprom entry
+    } else {
         r = 255;
         g = 0;
         b = 0;
@@ -81,7 +81,7 @@ void btnPressed() {
 void setup() {
     pinMode(BTN_PIN, INPUT_PULLUP);
     pinMode(PIXEL_PIN, OUTPUT);
-    attachInterrupt(BTN_INTERRUPT, btnPressed, FALLING);  // interupt 0 = pin 2
+    attachInterrupt(BTN_INTERRUPT, btnPressed, FALLING);
     pixels.begin();
     r = EEPROM.read(100);
     g = EEPROM.read(101);
