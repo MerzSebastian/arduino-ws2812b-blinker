@@ -47,20 +47,16 @@ jobs:
             && apt update \
             && apt install gh -y
       - run:
-          name: get new version
+          name: zip it and ship it
           command: |
             export NEW_VERSION=$( \
             curl -L https://github.com/MerzSebastian/arduino-ws2812b-blinker/releases/latest | \
             grep -oP '(?<=releases/tag/).*?(?=" />)' | \
             head -1 | \
             awk -F. -v OFS=. '{$2 += 1 ; print}')
-            echo ${NEW_VERSION}
-      - run:
-          name: zip files
-          command: |
             apt install -y zip
             zip -r release.zip compiled
-            echo ${NEW_VERSION}
+            gh release create ${NEW_VERSION} release.zip --notes "Nightly version - potentially unstable"
 
             
 workflows:
