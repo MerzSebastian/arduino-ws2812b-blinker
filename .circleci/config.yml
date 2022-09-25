@@ -26,9 +26,26 @@ jobs:
             -I ArduinoCore-avr/libraries/Adafruit_NeoPixel/ 
             -I ArduinoCore-avr/libraries/EEPROM/src/ 
             arduino-ws2812b-blinker/arduino-ws2812b-blinker.ino
+  cli-build:
+    docker:
+      - image: ubuntu:latest
+    steps:
+      - checkout
+      - run:
+          name: Install avr toolchain
+          command: |
+            apt update
+            apt install -y curl
+            curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+            arduino-cli core update-index
+      - run:
+          name: compile
+          command: |
+            arduino-cli compile -b arduino:avr:nano /
 
 
 workflows:
   build:
     jobs:
       - build
+      - cli-build
