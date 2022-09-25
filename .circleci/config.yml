@@ -3,31 +3,6 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: ubuntu:latest
-    steps:
-      - checkout
-      - run:
-          name: Install avr toolchain
-          command: |
-            apt update
-            apt install -y gcc-avr avr-libc avrdude curl git
-            git clone https://github.com/arduino/ArduinoCore-avr.git
-      - run:
-          name: install Adafruite NeoPixel library
-          command: |
-            cd ArduinoCore-avr/libraries
-            git clone https://github.com/adafruit/Adafruit_NeoPixel.git
-      - run:
-          name: compile for atmega328p
-          command: >
-            avr-g++ -mmcu=atmega328p -DARDUINO=105 -DF_CPU=16000000L -Os -x c++ 
-            -I ArduinoCore-avr/cores/arduino/ 
-            -I ArduinoCore-avr/variants/standard/ 
-            -I ArduinoCore-avr/libraries/Adafruit_NeoPixel/ 
-            -I ArduinoCore-avr/libraries/EEPROM/src/ 
-            arduino-ws2812b-blinker/arduino-ws2812b-blinker.ino
-  cli-build:
-    docker:
       - image: ubuntu:20.04
     steps:
       - checkout
@@ -51,9 +26,7 @@ jobs:
             export PATH=/root/project/bin
             arduino-cli compile -b arduino:avr:nano arduino-ws2812b-blinker
 
-
 workflows:
   build:
     jobs:
       - build
-      - cli-build
