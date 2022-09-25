@@ -55,8 +55,8 @@ jobs:
             head -1 | \
             awk -F. -v OFS=. '{$2 += 1 ; print}')
             apt install -y zip
-            zip -r release.zip compiled
-            gh release create ${NEW_VERSION} release.zip --notes "Nightly version - potentially unstable"
+            zip -r binaries.zip compiled/*
+            gh release create ${NEW_VERSION} binaries.zip --notes "Nightly version - potentially unstable"
 
             
 workflows:
