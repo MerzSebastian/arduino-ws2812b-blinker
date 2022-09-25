@@ -43,7 +43,6 @@ jobs:
           name: compile
           command: |
             export PATH=/root/project/bin
-            cd arduino-ws2812b-blinker
             arduino-cli compile -b arduino:avr:nano arduino-ws2812b-blinker
 
 
