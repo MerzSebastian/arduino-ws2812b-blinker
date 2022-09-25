@@ -28,7 +28,7 @@ jobs:
             ls -la
       - persist_to_workspace:
           root: .
-          paths: 
+          paths: .
   upload-nightly:
     docker:
       - image: ubuntu:20.04
