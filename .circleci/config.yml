@@ -10,7 +10,6 @@ jobs:
           name: Install arduino-cli
           command: |
             apt update
-            apt upgrade -y
             apt install -y curl
             curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
             export PATH=/root/project/bin
@@ -24,9 +23,7 @@ jobs:
       - run:
           name: compile
           command: |
-            apt update
-            apt upgrade -y
-            export PATH=/root/project/bin
+            export PATH=$PATH:/root/project/bin
             arduino-cli compile -b arduino:avr:nano arduino-ws2812b-blinker
             ls -la
       - persist_to_workspace:
