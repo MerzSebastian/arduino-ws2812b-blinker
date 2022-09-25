@@ -10,6 +10,7 @@ jobs:
           name: Install arduino-cli
           command: |
             apt update
+            apt upgrade
             apt install -y curl
             curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
             export PATH=/root/project/bin
