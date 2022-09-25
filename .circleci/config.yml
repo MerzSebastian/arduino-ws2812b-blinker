@@ -58,7 +58,7 @@ jobs:
       - run:
           name: zip files
           command: |
-            apt install zip
+            apt install -y zip
             zip -r release.zip compiled
             echo ${NEW_VERSION}
 
