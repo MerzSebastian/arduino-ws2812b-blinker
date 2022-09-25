@@ -24,11 +24,11 @@ jobs:
           name: compile
           command: |
             export PATH=$PATH:/root/project/bin
-            arduino-cli compile -b arduino:avr:nano arduino-ws2812b-blinker
-            cd bin && ls -la
+            arduino-cli compile -b arduino:avr:nano --output /root/project/compiled arduino-ws2812b-blinker
+            cd compiled && ls -la
       - persist_to_workspace:
           root: .
-          paths: bin
+          paths: compiled
   upload-nightly:
     docker:
       - image: ubuntu:20.04
@@ -39,6 +39,8 @@ jobs:
       - run:
           name: get new version
           command: |
+            apt update
+            apt install -y curl
             export NEW_VERSION=$( \
             curl -L https://github.com/MerzSebastian/arduino-ws2812b-blinker/releases/latest | \
             grep -oP '(?<=releases/tag/).*?(?=" />)' | \
