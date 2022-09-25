@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  build:
+  compile:
     docker:
       - image: ubuntu:20.04
     steps:
@@ -27,6 +27,6 @@ jobs:
             arduino-cli compile -b arduino:avr:nano arduino-ws2812b-blinker
 
 workflows:
-  build:
+  compile:
     jobs:
       - build
