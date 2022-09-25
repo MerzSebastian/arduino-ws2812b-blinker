@@ -55,6 +55,12 @@ jobs:
             head -1 | \
             awk -F. -v OFS=. '{$2 += 1 ; print}')
             echo ${NEW_VERSION}
+      - run:
+          name: zip files
+          command: |
+            apt install zip
+            zip -r release.zip compiled
+            echo ${NEW_VERSION}
 
             
 workflows:
