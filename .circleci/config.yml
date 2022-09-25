@@ -39,6 +39,7 @@ jobs:
       - run:
           name: get new version
           command: |
+            ls -la
             apt update
             apt install -y curl
             export NEW_VERSION=$( \
