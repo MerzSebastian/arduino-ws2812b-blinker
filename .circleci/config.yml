@@ -32,8 +32,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install avr toolchain
+          name: Install arduino-cli
           command: |
+            cd ..
             apt update
             apt install -y curl
             curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
