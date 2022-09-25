@@ -1,5 +1,5 @@
 # Arduino NeoPixel Blinker
-[![CircleCI](https://circleci.com/MerzSebastian/arduino-ws2812b-blinker.svg?style=svg)](https://app.circleci.com/pipelines/github/MerzSebastian/arduino-ws2812b-blinker)
+[![CircleCI](https://circleci.com/gh/MerzSebastian/arduino-ws2812b-blinker.svg?style=svg)](https://circleci.com/gh/MerzSebastian/arduino-ws2812b-blinker)
 
 A small arduino project that makes neopixel addressable leds flash. You can change the pauses between the flashes as well as the color. Both values are stored in the eeprom and loaded on restart.
 The pipeline was set up with CircleCi and the arduino-cli.
