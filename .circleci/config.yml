@@ -42,6 +42,7 @@ jobs:
       - run:
           name: compile
           command: |
+            export PATH=/root/project/bin
             arduino-cli compile -b arduino:avr:nano /
 
 
