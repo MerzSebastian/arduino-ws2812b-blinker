@@ -38,6 +38,7 @@ jobs:
             apt install -y curl
             curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
             export PATH=/root/project/bin
+            arduino-cli core install arduino:avr
             arduino-cli core update-index
       - run:
           name: compile
