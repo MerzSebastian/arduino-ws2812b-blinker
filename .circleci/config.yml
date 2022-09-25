@@ -28,7 +28,7 @@ jobs:
             arduino-ws2812b-blinker/arduino-ws2812b-blinker.ino
   cli-build:
     docker:
-      - image: ubuntu:latest
+      - image: ubuntu:20.04
     steps:
       - checkout
       - run:
@@ -40,6 +40,11 @@ jobs:
             export PATH=/root/project/bin
             arduino-cli core install arduino:avr
             arduino-cli core update-index
+      - run:
+          name: Install libraries
+          command: |
+            export PATH=/root/project/bin
+            arduino-cli lib install  Adafruit\ NeoPixel@1.10.6
       - run:
           name: compile
           command: |
