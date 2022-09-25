@@ -6,7 +6,6 @@
 #define PIXEL_COUNT 12
 
 Adafruit_NeoPixel pixels(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
-
 unsigned short int delayOptions[] = {200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400};
 unsigned short int blinkDelay = 0;
 unsigned short int menuDelayThreshold = 1000;
@@ -22,8 +21,8 @@ void setLED(byte r, byte g, byte b) {
     pixels.show();
 }
 
-void blinkLEDS(byte r, byte g, byte b, int delayMs, int count) {
-    for (int i = 0; i < count; i++) {
+void blinkLEDS(byte r, byte g, byte b, unsigned short int delayMs, unsigned short int count) {
+    for (unsigned short int i = 0; i < count; i++) {
         setLED(r, g, b);
         delay(delayMs);
         setLED(0, 0, 0);
