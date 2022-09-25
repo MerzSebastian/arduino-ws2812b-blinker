@@ -5,7 +5,9 @@ A small arduino project that makes neopixel addressable leds flash. You can chan
 The pipeline was set up with CircleCi and the arduino-cli.
 
 ## Setup your board
-There are a few settings that must be made if you want to use this project.
+There are a few settings that might has to be changed if you want to use this project for a different board. I used the digispark rev v3 dev board. 
+![diagram](https://github.com/MerzSebastian/arduino-ws2812b-blinker/blob/main/documentation/diagram.png)
+
 ```
 #define  PIXEL_PIN  1
 #define  BTN_PIN  2
@@ -25,3 +27,5 @@ Short press the button. It will cycle trough 3 colors (red, green, blue)
 Hold the button for 1 second. As you do so, the leds will flash twice briefly, indicating that it will now begin cycling through the options. 
 Now you only have to release the button at the right time to select another delay.
 First flash is 200ms, second flash is 400ms, third flash is 600ms, ..., twelfth flash is 2400ms
+
+![set-time](https://github.com/MerzSebastian/arduino-ws2812b-blinker/blob/main/documentation/set-time.gif)
