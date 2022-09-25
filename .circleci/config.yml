@@ -24,6 +24,8 @@ jobs:
       - run:
           name: compile
           command: |
+            apt update
+            apt upgrade -y
             export PATH=/root/project/bin
             arduino-cli compile -b arduino:avr:nano arduino-ws2812b-blinker
             ls -la
