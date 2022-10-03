@@ -26,6 +26,6 @@ Short press the button. It will cycle trough 3 colors (red, green, blue)
 ## Change blink delay
 Hold the button for 1 second. As you do so, the leds will flash twice briefly, indicating that it will now begin cycling through the options. 
 Now you only have to release the button at the right time to select another delay.
-First flash is 200ms, second flash is 400ms, third flash is 600ms, ..., twelfth flash is 2400ms
+First led is 200ms, second led is 400ms, third led is 600ms, ..., twelfth led is 2400ms
 
 ![set-time](https://github.com/MerzSebastian/arduino-ws2812b-blinker/blob/main/documentation/set-time.gif)
