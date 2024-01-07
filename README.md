@@ -17,15 +17,28 @@ There are a few settings that might has to be changed if you want to use this pr
 |definition|description|
 |---|---|
 |PIXEL_PIN|data pin for ws2812b leds|
-|BTN_PIN|pin for button, this has to be a interrupt pin / BTN_PIN <=> button <=> vcc|
+|BTN_PIN|pin for button, this has to be a interrupt pin / BTN_PIN <=> button <=> GND|
 |BTN_INTERRUPT|interrupt pin, must correlate with BTN_PIN|
 |PIXEL_COUNT|how many leds are connected to the data pin?|
+
+Info: You only need to bridge the diode if you want to add a lot of leds. Do at your own risk :)
 
 ## Change color
 Short press the button. It will cycle trough 3 colors (red, green, blue)
 ## Change blink delay
-Hold the button for 1 second. As you do so, the leds will flash twice briefly, indicating that it will now begin cycling through the options. 
-Now you only have to release the button at the right time to select another delay.
-First led is 200ms, second led is 400ms, third led is 600ms, ..., twelfth led is 2400ms
-
-![set-time](https://github.com/MerzSebastian/arduino-ws2812b-blinker/blob/main/documentation/set-time.gif)
+To adjust the delay of the flashing you have to press and hold the button. After 1 second, the leds flash twice quickly, which indicates that you have entered the options menu. Keep holding and let go if you chosen your option.
+Possible options:
+|option|blink delay in ms|
+|---|---|
+|1|200|
+|2|400|
+|3|600|
+|4|800|
+|5|1000|
+|6|1200|
+|7|1400|
+|8|1600|
+|9|1800|
+|10|2000|
+|11|2200|
+|12|2400|
